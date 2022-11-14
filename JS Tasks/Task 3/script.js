@@ -30,7 +30,11 @@ outputField.style.overflowWrap = "break-word";
 fetch(ENDPOINT)
   .then((response) => response.json())
   .then((result) =>
-    showUsers.addEventListener("click", () => createNewCard(result))
+    showUsers.addEventListener("click", () => {
+      // reset def counter if button is clicked again
+      defaultCounter = 1;
+      createNewCard(result);
+    })
   )
   .catch((error) => console.log(error));
 
