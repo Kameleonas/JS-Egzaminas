@@ -32,9 +32,11 @@ document.querySelector("form").addEventListener("submit", (event) => {
   input = parseFloat(input);
 
   // validate input and execute code
-  !isNaN(input) && input > 0
-    ? displayResult(convert(input))
-    : alert("iveskite teigiamą skaičių..");
+  if (!isNaN(input) && input > 0) {
+    displayResult(convert(input));
+  } else {
+    alert("iveskite teigiamą skaičių..");
+  }
 });
 
 // display results in output
@@ -48,9 +50,11 @@ function displayResult(input) {
   const gramai = document.createElement("p");
   const uncijos = document.createElement("p");
 
-  svarai.innerText = `Result one = ${input[0]} lb`;
-  gramai.innerText = `Result two = ${input[1]} g`;
-  uncijos.innerText = `Result three = ${input[2]} oz`;
+  const [lb, g, oz] = input;
+
+  svarai.innerText = `Result one = ${lb} lb`;
+  gramai.innerText = `Result two = ${g} g`;
+  uncijos.innerText = `Result three = ${oz} oz`;
 
   resultField.append(svarai, gramai, uncijos);
 
